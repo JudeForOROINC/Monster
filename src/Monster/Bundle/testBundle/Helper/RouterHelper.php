@@ -5,12 +5,12 @@
  * Date: 30.06.15
  * Time: 15:44
  */
-namespace Magecore\Bundle\TestTaskBundle\Helper;
+namespace Monster\Bundle\testBundle\Helper;
 
-use Magecore\Bundle\TestTaskBundle\Entity\Comment;
-use Magecore\Bundle\TestTaskBundle\Entity\Issue;
-use Magecore\Bundle\TestTaskBundle\Entity\Project;
-use Magecore\Bundle\TestTaskBundle\Entity\User;
+//use Magecore\Bundle\TestTaskBundle\Entity\Comment;
+use Monster\Bundle\testBundle\Entity\Post;
+//use Magecore\Bundle\TestTaskBundle\Entity\Project;
+//use Magecore\Bundle\TestTaskBundle\Entity\User;
 use Symfony\Component\HttpKernel\EventListener\ExceptionListener;
 
 class RouterHelper{

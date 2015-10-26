@@ -22,14 +22,13 @@
                 <tr {% if edit_id is defined %}
                         {% if entity.id == edit_id %}style="background-color: #003bb3"{% endif %}
                     {% endif %}>
-                    <td><a name="comment-{{ entity.id }}"> {{ frms.linkEnt(entity) }}</td>
+                    <td><a name="comment-{{ entity.id }}"> {{ entity.id }}</td>
                 <td>{{ entity.body }}</td>
                 <td>{{ entity.name }}</td>
                     <td>{{ entity.email }}</td>
                 <td>
                     <div class="item-actions">
-                        <a href="#" class="comment_remove_action btn btn-sm btn-default" data-content="{{ path('magecore_testtask_comment_delete', {id: entity.id}) }}">{{ 'action.remove'|trans }}</a>
-                        <a href="#" class="comment_edit_action btn btn-sm btn-default" data-content="{{ path('magecore_testtask_comment_edit', {id: entity.id}) }}">{{ 'action.edit'|trans }}</a>
+
                         </div>
                 </td>
             </tr>
