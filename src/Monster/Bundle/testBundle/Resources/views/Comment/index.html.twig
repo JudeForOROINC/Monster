@@ -1,0 +1,61 @@
+
+
+{% block main -%}
+{% if entities %}
+    {% import "MonstertestBundle:Macro:Macro.html.twig" as frms %}
+        {% if entities is not empty %}
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ 'field.id'|trans }}</th>
+                <th>{{ 'field.body'|trans }}</th>
+                <th><i class="fa fa-user"></i>{{ 'field.author'|trans }}</th>
+                <th><i class="fa fa-calendar">{{ 'field.created'|trans }}</th>
+                <th><i class="fa fa-calendar">{{ 'field.updated'|trans }}</th>
+                <th><i class="fa fa-cogs"></i>{{ 'field.actions'|trans }}</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for entity in entities %}
+                <tr {% if edit_id is defined %}
+                        {% if entity.id == edit_id %}style="background-color: #003bb3"{% endif %}
+                    {% endif %}>
+                    <td><a name="comment-{{ entity.id }}"> {{ frms.linkEnt(entity) }}</td>
+                <td>{{ entity.body }}</td>
+                <td>{{ entity.name }}</td>
+                    <td>{{ entity.email }}</td>
+                <td>
+                    <div class="item-actions">
+                        <a href="#" class="comment_remove_action btn btn-sm btn-default" data-content="{{ path('magecore_testtask_comment_delete', {id: entity.id}) }}">{{ 'action.remove'|trans }}</a>
+                        <a href="#" class="comment_edit_action btn btn-sm btn-default" data-content="{{ path('magecore_testtask_comment_edit', {id: entity.id}) }}">{{ 'action.edit'|trans }}</a>
+                        </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+            <p>{{ 'message.no.comments'|trans }}</p>
+{% endif %}
+
+        <div class="form_error"></div>
+
+        {% if edit_id is defined %}
+            <form method="POST" class="ajaxForm" action="{{path('magecore_testtask_comment_edit',{id: edit_id })}}" {{ form_enctype(addComment) }}>
+        {% else %}
+            <form method="POST" class="ajaxForm" action="{{path('monster_test_comment_create',{id: issue_id })}}" {{ form_enctype(addComment) }}>
+        {% endif %}
+
+        {#<form method="POST" class="ajaxForm" action="{% if edit_id is defined %}{{path('magecore_testtask_comment_edit',{id: edit_id })}}" {{ form_enctype(addComment) }}{% else  %}{{path('magecore_testtask_comment_create',{id: issue_id })}}" {{ form_enctype(addComment) }}{% endif %}>#}
+            <div id="form_body">
+                {% include 'MonstertestBundle:Comment:form.html.twig' with {'form': addComment} %}
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="button_submit" >{{ 'button.submit'|trans }}</button>
+            {{ form_rest(addComment) }}
+            </form>
+        {#</div>#}
+{% endif %}
+    {% endblock %}
