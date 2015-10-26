@@ -23,10 +23,14 @@ class Comment
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="ParentComment_id", type="integer")
+     * @ORM\ManyToOne(targetEntity="Comment", inversedBy="childrenComments" )
+     * @ORM\JoinColumn(name="parent_comment_id", referencedColumnName="id", nullable=true)
      */
-    private $parentCommentId;
+    private $parentComment;
+    /**
+    * @ORM\OneToMany(targetEntity="Comment", mappedBy="parentComment")
+    */
+    private $childrenComments;
 
     /**
      * @var integer
