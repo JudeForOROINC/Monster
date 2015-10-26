@@ -77,9 +77,9 @@ class Comment
      * @param integer $parentCommentId
      * @return Comment
      */
-    public function setParentCommentId($parentCommentId)
+    public function setParentComment($parentComment)
     {
-        $this->parentCommentId = $parentCommentId;
+        $this->parentCommentId = $parentComment;
 
         return $this;
     }
@@ -89,9 +89,9 @@ class Comment
      *
      * @return integer 
      */
-    public function getParentCommentId()
+    public function getParentComment()
     {
-        return $this->parentCommentId;
+        return $this->parentComment;
     }
 
     /**
