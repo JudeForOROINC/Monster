@@ -37,6 +37,34 @@ class CommentController extends Controller
             'entities' => $entities,
         );
     }
+
+    /**
+     * Lists all Comment entities.
+     * @param Post $issue
+     * @return JsonResponse
+     */
+    protected function listAction(Post $issue)
+    {
+        $entity = new Comment();
+        $entity->setPost($issue);
+
+        $form = $this->createCreateForm($entity);
+
+        return new JsonResponse(array('message'=>
+            $this->renderView(
+                'MonstertestBundle:Comment:index.html.twig',
+                array(
+                    #entities: entity.comments, addComment: addComment
+                    'entities'=>$issue->getComments(),
+                    'addComment'=>$form->createView(),
+                    'issue_id'=>$issue->getId(),
+                )
+            ),
+        ), 200);
+    }
+
+
+
     /**
      * Creates a new Comment entity.
      *

@@ -32,12 +32,8 @@ class Comment
     */
     private $childrenComments;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="page_id", type="integer")
-     */
-    private $pageId;
+
+
 
     /**
      * @var string
